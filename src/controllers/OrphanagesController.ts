@@ -32,6 +32,12 @@ export default {
     
         const orphanagesRepository = getRepository(Orphanages); // a partir de agora eu tenho os metodos para frazer um CRUD
     
+
+        const requestImages = request.files as Express.Multer.File[]; // pegando as imagens no corpo da requisição
+        const images = requestImages.map(image =>{
+             return {path:image.filename};
+        });
+
         const orphanage = orphanagesRepository.create({ // cria o orfanato... mas não salva
             name,
             latitude,
@@ -39,7 +45,8 @@ export default {
             about,
             instructions,
             opening_hours,
-            open_on_weekends
+            open_on_weekends,
+            images
         });
     
         await orphanagesRepository.save(orphanage);

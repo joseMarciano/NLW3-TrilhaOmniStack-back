@@ -11,7 +11,6 @@ export default {
         const orphanages = await orphanagesRepository.find({
             relations: ['images'] // para retornar as imagens tbm, já que é um relacionamento
         });
-        console.log(orphanages);
         return response.json(orphanageView.renderMany(orphanages));
     },
     async find(request: Request, response: Response){

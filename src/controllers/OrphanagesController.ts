@@ -11,6 +11,14 @@ export default {
         const orphanages = await orphanagesRepository.find();
         return response.json(orphanages);
     },
+    async find(request: Request, response: Response){
+
+        const {id} = request.params; // pega o id no parametro da requisição
+        const orphanagesRepository = getRepository(Orphanages);
+
+        const orphanage = await orphanagesRepository.findOneOrFail(id);
+        return response.json(orphanage);
+    },
     async create(request: Request,response: Response){
         const { /* desestruturando o body da requisição e m variáveis  */
             name,

@@ -4,6 +4,13 @@ import {getRepository} from 'typeorm'; // typeorm utiliza o pattern 'repositoryP
 import Orphanages from '../models/Orphanage'; //pegando a entidade 
 
 export default {
+
+    async listAll(request: Request, response: Response){
+        const orphanagesRepository = getRepository(Orphanages);
+
+        const orphanages = await orphanagesRepository.find();
+        return response.json(orphanages);
+    },
     async create(request: Request,response: Response){
         const { /* desestruturando o body da requisição e m variáveis  */
             name,

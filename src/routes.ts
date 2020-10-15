@@ -4,5 +4,5 @@ import OrphanagesController from './controllers/OrphanagesController'; // pegand
 const routes = Router();
 
 routes.post('/orphanages',OrphanagesController.create);
-
+routes.get('/orphanages',OrphanagesController.listAll);
 export default routes; //exportar as rotas e importar no server
